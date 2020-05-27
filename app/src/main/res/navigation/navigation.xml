@@ -9,5 +9,26 @@
         android:name="com.shubham.womensafety.DashBoardFragment"
         android:label="DashBoardFragment"
         tools:layout="@layout/fragment_dash_board">
+        <action
+            android:id="@+id/action_dashBoardFragment_to_guardianInfo"
+            app:destination="@id/guardianInfo"
+            app:popUpTo="@+id/dashBoardFragment"
+            app:popUpToInclusive="false" />
     </fragment>
+    <fragment
+        android:id="@+id/guardianInfo"
+        android:name="com.shubham.womensafety.GuardianDetail.GuardianInfo"
+        android:label="fragment_guardian_info"
+        tools:layout="@layout/fragment_guardian_info" >
+        <action
+            android:id="@+id/action_guardianInfo_to_addGuardian"
+            app:destination="@id/addGuardian"
+            app:popUpTo="@+id/addGuardian"
+            app:popUpToInclusive="false" />
+    </fragment>
+    <fragment
+        android:id="@+id/addGuardian"
+        android:name="com.shubham.womensafety.GuardianDetail.AddGuardian"
+        android:label="fragment_add_guardian"
+        tools:layout="@layout/fragment_add_guardian" />
 </navigation>

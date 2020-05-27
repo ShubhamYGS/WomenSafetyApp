@@ -6,6 +6,7 @@ apply plugin: 'kotlin-android-extensions'
 
 apply plugin: 'com.google.gms.google-services'
 
+apply plugin: 'androidx.navigation.safeargs'
 android {
     compileSdkVersion 29
     buildToolsVersion "29.0.2"
@@ -43,6 +44,7 @@ dependencies {
     implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.2.0-alpha02"
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0-alpha02'
     implementation 'androidx.fragment:fragment-ktx:1.2.0-alpha01'
+    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 
     // Android KTX
     implementation 'androidx.core:core-ktx:1.0.2'
@@ -51,7 +53,6 @@ dependencies {
     implementation "androidx.room:room-runtime:$room_version"
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     kapt "androidx.room:room-compiler:$room_version"
-    implementation "androidx.lifecycle:lifecycle-extensions:2.0.0"
 
     //RecyclerView & CardView
     implementation 'androidx.recyclerview:recyclerview:1.0.0'

@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.firebase.auth.FirebaseAuth
@@ -40,6 +42,10 @@ class DashBoardFragment : Fragment() {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_dash_board,container,false)
+
+        binding.guardianButton.setOnClickListener { view:View->
+            view.findNavController().navigate(DashBoardFragmentDirections.actionDashBoardFragmentToGuardianInfo())
+        }
 
         return binding.root
     }
@@ -97,5 +103,6 @@ class DashBoardFragment : Fragment() {
                 .build(), DashBoardFragment.SIGN_IN_RESULT_CODE
         )
     }
+
 
 }
