@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/rulesFragment"
+        android:icon="@drawable/location"
+        android:title="Geo Location" />
+    <item
+        android:id="@+id/aboutFragment"
+        android:icon="@drawable/logout"
+        android:title="Guardian Details" />
+    <item android:title="Sub items">
+        <menu>
+            <item
+                android:id="@+id/logout_user"
+                android:icon="@drawable/logout"
+                android:title="Logout" />
+        </menu>
+    </item>
+</menu>

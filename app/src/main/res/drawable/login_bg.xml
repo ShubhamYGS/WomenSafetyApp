@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+<item>
+    <shape xmlns:android="http://schemas.android.com/apk/res/android" android:shape="rectangle" >
+        <gradient
+            android:startColor="#00b0ff"
+            android:centerColor="#8EB4CE"
+            android:endColor="#FFFFFF"
+            android:angle="270"/>
+    </shape>
+</item>
+<item
+    android:gravity="center"
+    android:drawable="@drawable/ic_splash_text"/>
+</layer-list>
