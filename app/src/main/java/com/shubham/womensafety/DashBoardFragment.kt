@@ -2,6 +2,7 @@ package com.shubham.womensafety
 
 import android.app.Activity
 import android.content.Intent
+import android.location.Location
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -17,6 +18,8 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.shubham.womensafety.FirebaseAuth.LoginViewModel
 import com.shubham.womensafety.databinding.FragmentDashBoardBinding
@@ -26,6 +29,11 @@ import kotlinx.android.synthetic.main.nav_header.*
 class DashBoardFragment : Fragment() {
 
     private lateinit var binding: FragmentDashBoardBinding
+
+    private lateinit var fusedLocationClient: FusedLocationProviderClient
+    private lateinit var lastLocation: Location
+    private var Latitude:String=""
+    private var Longitude:String=""
 
     companion object {
         const val TAG = "DashBoardFragment"
@@ -39,6 +47,8 @@ class DashBoardFragment : Fragment() {
         savedInstanceState: Bundle?
         ): View? {
 
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
+
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_dash_board,container,false)
@@ -47,12 +57,34 @@ class DashBoardFragment : Fragment() {
             view.findNavController().navigate(DashBoardFragmentDirections.actionDashBoardFragmentToGuardianInfo())
         }
 
+        binding.locButton.setOnClickListener { view:View->
+            view.findNavController().navigate(R.id.action_dashBoardFragment_to_mapsActivity)
+        }
+
+        binding.emerButton.setOnClickListener {
+            getLocation()
+        }
+
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeAuthenticationState()
+    }
+
+    private fun getLocation(){
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if(location!=null){
+                lastLocation=location
+                Latitude = (location.latitude).toString()
+                Longitude = (location.longitude).toString()
+                Toast.makeText(activity!!,"${Latitude +"  "+ Longitude}",Toast.LENGTH_LONG).show()
+            }
+            else{
+                Toast.makeText(activity!!,"Try again: Location not fetched",Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {

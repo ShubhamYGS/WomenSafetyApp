@@ -14,6 +14,11 @@
             app:destination="@id/guardianInfo"
             app:popUpTo="@+id/dashBoardFragment"
             app:popUpToInclusive="false" />
+        <action
+            android:id="@+id/action_dashBoardFragment_to_mapsActivity"
+            app:destination="@id/mapsActivity"
+            app:popUpTo="@+id/dashBoardFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <fragment
         android:id="@+id/guardianInfo"
@@ -31,4 +36,9 @@
         android:name="com.shubham.womensafety.GuardianDetail.AddGuardian"
         android:label="fragment_add_guardian"
         tools:layout="@layout/fragment_add_guardian" />
+    <activity
+        android:id="@+id/mapsActivity"
+        android:name="com.shubham.womensafety.MapsActivity"
+        android:label="activity_maps"
+        tools:layout="@layout/activity_maps" />
 </navigation>
