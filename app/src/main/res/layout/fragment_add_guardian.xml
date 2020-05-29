@@ -2,7 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.shubham.womensafety.GuardianDetail.AddGuardian"
+    tools:context="com.shubham.womensafety.guardiandetail.AddGuardian"
     >
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -18,8 +18,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
             android:ems="10"
-            android:inputType="textPersonName"
             android:hint="Enter Name"
+            android:inputType="textPersonName"
             app:layout_constraintBottom_toTopOf="@id/editRelation"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
@@ -46,20 +46,33 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="25dp"
-            android:layout_marginBottom="40dp"
             android:ems="10"
-            android:inputType="textPersonName"
+            android:inputType="number"
             android:hint="Enter Phone No"
-            app:layout_constraintBottom_toTopOf="@+id/submitDetail"
+            app:layout_constraintBottom_toTopOf="@+id/editEmail"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/editRelation" />
+
+        <EditText
+            android:id="@+id/editEmail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="25dp"
+            android:layout_marginBottom="40dp"
+            android:ems="10"
+            android:inputType="textPersonName"
+            android:hint="Enter Email ID"
+            app:layout_constraintBottom_toTopOf="@+id/submitDetail"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editPhone" />
 
         <Button
             android:id="@+id/submitDetail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Button"
+            android:text="Submit"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

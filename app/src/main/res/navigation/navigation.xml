@@ -22,7 +22,7 @@
     </fragment>
     <fragment
         android:id="@+id/guardianInfo"
-        android:name="com.shubham.womensafety.GuardianDetail.GuardianInfo"
+        android:name="com.shubham.womensafety.guardiandetail.GuardianInfo"
         android:label="fragment_guardian_info"
         tools:layout="@layout/fragment_guardian_info" >
         <action
@@ -33,7 +33,7 @@
     </fragment>
     <fragment
         android:id="@+id/addGuardian"
-        android:name="com.shubham.womensafety.GuardianDetail.AddGuardian"
+        android:name="com.shubham.womensafety.guardiandetail.AddGuardian"
         android:label="fragment_add_guardian"
         tools:layout="@layout/fragment_add_guardian" />
     <activity

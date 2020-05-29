@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 
 @Database(entities = [Guardian::class],version = 1,exportSchema = false)
 abstract class GuardianDatabase: RoomDatabase() {
-    abstract val sleepDatabaseDao:GuardianDao
+    abstract val guardianDatabaseDao:GuardianDao
 
     companion object{
         @Volatile

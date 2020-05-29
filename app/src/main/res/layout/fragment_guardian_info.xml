@@ -2,7 +2,13 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.shubham.womensafety.GuardianDetail.GuardianInfo">
+    tools:context="com.shubham.womensafety.guardiandetail.GuardianInfo">
+
+    <data>
+        <variable
+            name="guardianInfoViewModel"
+            type="com.shubham.womensafety.guardiandetail.GuardianInfoViewModel" />
+    </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout3"

@@ -11,11 +11,14 @@ data class Guardian (
     val guardianId:Long= 0L,
 
     @ColumnInfo(name = "guardian_name")
-    val guardianName:String="",
+    var guardianName:String="",
 
     @ColumnInfo(name="guardian_relation")
     var guardianRelation:String="",
 
     @ColumnInfo(name="guardian_phoneno")
-    var guardianPhoneNo:Int = 0
+    var guardianPhoneNo:String = "",
+
+    @ColumnInfo(name="email_id")
+    var guardianEmail:String = ""
 )
