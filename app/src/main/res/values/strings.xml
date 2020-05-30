@@ -9,4 +9,6 @@
     <string name="hybrid_map">Hybrid Map</string>
     <string name="satellite_map">Satellite Map</string>
     <string name="terrain_map">Terrain Map</string>
+
+    <string name="location_permission_not_granted">Location Permission not granted</string>
 </resources>

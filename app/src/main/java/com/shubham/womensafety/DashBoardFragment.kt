@@ -2,8 +2,10 @@ package com.shubham.womensafety
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.location.Location
 import android.os.Bundle
+import android.os.Looper
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -11,6 +13,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
@@ -18,8 +21,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
-import com.google.android.gms.location.FusedLocationProviderClient
-import com.google.android.gms.location.LocationServices
+import com.google.android.gms.location.*
 import com.google.firebase.auth.FirebaseAuth
 import com.shubham.womensafety.FirebaseAuth.LoginViewModel
 import com.shubham.womensafety.databinding.FragmentDashBoardBinding
@@ -38,6 +40,8 @@ class DashBoardFragment : Fragment() {
     companion object {
         const val TAG = "DashBoardFragment"
         const val SIGN_IN_RESULT_CODE = 1001
+        private const val LOCATION_PERMISSION_REQUEST_CODE = 999
+
     }
 
     private val viewModel by viewModels<LoginViewModel>()
