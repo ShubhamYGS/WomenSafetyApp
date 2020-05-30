@@ -1,40 +1,32 @@
 package com.shubham.womensafety.guardiandetail
 
 import android.app.Application
+import android.widget.Toast
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.shubham.womensafety.database.Guardian
 import com.shubham.womensafety.database.GuardianDao
+import com.shubham.womensafety.database.GuardianDatabase
 import kotlinx.coroutines.*
 
 class GuardianInfoViewModel(
-    dataSource: GuardianDao,
-    application: Application):ViewModel() {
+    application: Application): AndroidViewModel(application) {
 
-    val database = dataSource
+    private val db:GuardianDatabase = GuardianDatabase.getInstance(application)
+    internal val allGuardians : LiveData<List<Guardian>> = db.guardianDatabaseDao().getAllGuardians()
+
 
     private var viewModelJob = Job()
 
     private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
-    private var toguardian = MutableLiveData<Guardian?>()
-
-    val guardians = database.getAllGuardians()
-
-    private fun initializeToguardian(){
+    fun insert(guardian: Guardian){
         uiScope.launch {
-
+            withContext(Dispatchers.IO) {
+                db.guardianDatabaseDao().insert(guardian)
+            }
         }
     }
-
-
-    init {
-        initializeToguardian()
-    }
-
-    override fun onCleared() {
-        super.onCleared()
-        viewModelJob.cancel()
-    }
 }
-

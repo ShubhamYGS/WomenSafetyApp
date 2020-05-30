@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 @Entity(tableName = "guardian_table")
 data class Guardian (
     @PrimaryKey(autoGenerate = true)
-    val guardianId:Long= 0L,
+    val guardianId:Long?,
 
     @ColumnInfo(name = "guardian_name")
     var guardianName:String="",

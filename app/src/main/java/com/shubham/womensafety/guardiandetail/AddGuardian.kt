@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
 import androidx.room.Room
 import com.shubham.womensafety.R
 import com.shubham.womensafety.database.Guardian
@@ -18,10 +19,11 @@ import kotlinx.coroutines.*
 class AddGuardian : Fragment() {
 
     private lateinit var binding: FragmentAddGuardianBinding
-
-    private var viewModelJob = Job()
-
-    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
+    private lateinit var model: GuardianInfoViewModel
+    private lateinit var name:String
+    private lateinit var relation:String
+    private lateinit var email:String
+    private lateinit var phone:String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -34,31 +36,25 @@ class AddGuardian : Fragment() {
             R.layout.fragment_add_guardian, container, false
         )
 
+        // Get the view model
+        model = ViewModelProviders.of(this).get(GuardianInfoViewModel::class.java)
 
         binding.submitDetail.setOnClickListener {
-            uiScope.launch {
-                addToDb()
-            }
+            addData()
         }
 
         return binding.root
     }
 
-    private suspend fun addToDb() {
-        withContext(Dispatchers.IO) {
-            val db =
-                Room.databaseBuilder(activity!!, GuardianDatabase::class.java, "GuardianDB").build()
+    private fun addData(){
+        name = binding.editName.text.toString()
+        relation = binding.editEmail.text.toString()
+        phone = binding.editPhone.text.toString()
+        email = binding.editRelation.text.toString()
 
-            val guardian = Guardian()
-            guardian.guardianName = binding.editName.text.toString()
-            guardian.guardianEmail = binding.editEmail.text.toString()
-            guardian.guardianPhoneNo = binding.editPhone.text.toString()
-            guardian.guardianRelation = binding.editRelation.text.toString()
+        val guardian = Guardian(null,name,relation,phone,email)
+        model.insert(guardian)
 
-            db.guardianDatabaseDao.insert(guardian)
-
-            Log.d("AddGuardian","Success")
-        }
+        Toast.makeText(activity!!,"Data Inserted Succesfully",Toast.LENGTH_SHORT).show()
     }
-
 }

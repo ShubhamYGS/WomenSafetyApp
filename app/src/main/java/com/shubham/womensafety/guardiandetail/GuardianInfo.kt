@@ -6,16 +6,18 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.shubham.womensafety.R
-import com.shubham.womensafety.database.GuardianDatabase
 import com.shubham.womensafety.databinding.FragmentGuardianInfoBinding
 
 class GuardianInfo : Fragment() {
 
     private lateinit var binding: FragmentGuardianInfoBinding
-
+    private lateinit var model: GuardianInfoViewModel
 
 
     override fun onCreateView(
@@ -25,17 +27,19 @@ class GuardianInfo : Fragment() {
         binding = DataBindingUtil.inflate(inflater,
             R.layout.fragment_guardian_info,container,false)
 
-        val application = requireNotNull(this.activity).application
+        // Get the view model
+        model = ViewModelProviders.of(this).get(GuardianInfoViewModel::class.java)
 
-        val dataSource = GuardianDatabase.getInstance(application).guardianDatabaseDao
+        // Specify layout for recycler view
+        val linearLayoutManager = LinearLayoutManager(
+            activity!!, RecyclerView.VERTICAL,false)
+        binding.guardianList.layoutManager = linearLayoutManager
 
-        val viewModelFactory = GuardianInfoViewModelFactory(dataSource, application)
-
-        val guardianInfoViewModel =
-            ViewModelProviders.of(
-                this, viewModelFactory).get(GuardianInfoViewModel::class.java)
-
-        binding.guardianInfoViewModel = guardianInfoViewModel
+        // Observe the model
+        model.allGuardians.observe(this, Observer{ guardians->
+            // Data bind the recycler view
+            binding.guardianList.adapter = GuardianAdapter(guardians)
+        })
 
         binding.addGuardian.setOnClickListener { openAddGuardian() }
 
