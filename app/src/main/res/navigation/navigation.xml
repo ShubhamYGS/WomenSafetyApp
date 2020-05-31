@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/dashBoardFragment"
         android:name="com.shubham.womensafety.DashBoardFragment"
-        android:label="DashBoardFragment"
+        android:label="Dashboard"
         tools:layout="@layout/fragment_dash_board">
         <action
             android:id="@+id/action_dashBoardFragment_to_guardianInfo"
@@ -23,8 +23,8 @@
     <fragment
         android:id="@+id/guardianInfo"
         android:name="com.shubham.womensafety.guardiandetail.GuardianInfo"
-        android:label="fragment_guardian_info"
-        tools:layout="@layout/fragment_guardian_info" >
+        android:label="Guardian Information"
+        tools:layout="@layout/fragment_guardian_info">
         <action
             android:id="@+id/action_guardianInfo_to_addGuardian"
             app:destination="@id/addGuardian"
@@ -34,8 +34,8 @@
     <fragment
         android:id="@+id/addGuardian"
         android:name="com.shubham.womensafety.guardiandetail.AddGuardian"
-        android:label="fragment_add_guardian"
-        tools:layout="@layout/fragment_add_guardian" >
+        android:label="Add Guardian"
+        tools:layout="@layout/fragment_add_guardian">
         <action
             android:id="@+id/action_addGuardian_to_guardianInfo"
             app:destination="@id/guardianInfo"
@@ -45,6 +45,6 @@
     <activity
         android:id="@+id/mapsActivity"
         android:name="com.shubham.womensafety.MapsActivity"
-        android:label="activity_maps"
+        android:label="Current Location"
         tools:layout="@layout/activity_maps" />
 </navigation>

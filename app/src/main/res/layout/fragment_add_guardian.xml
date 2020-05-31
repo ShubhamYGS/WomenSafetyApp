@@ -9,30 +9,38 @@
         android:id="@+id/frameLayout2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:padding="70dp"
      >
 
-
-        <EditText
-            android:id="@+id/editName"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:ems="10"
-            android:hint="Enter Name"
-            android:inputType="textPersonName"
-            app:layout_constraintBottom_toTopOf="@id/editRelation"
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="135dp"
+            android:layout_height="135dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.484"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            android:src="@drawable/user" />
+
+        <EditText
+            android:id="@+id/editName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="50dp"
             android:autofillHints=""
-            />
+            android:ems="10"
+            android:hint="Enter Name"
+            android:inputType="textPersonName"
+            app:layout_constraintBottom_toTopOf="@+id/editRelation"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/image" />
 
         <EditText
             android:id="@+id/editRelation"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="Enter Relation"
@@ -43,9 +51,9 @@
 
         <EditText
             android:id="@+id/editPhone"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="30dp"
             android:ems="10"
             android:inputType="number"
             android:hint="Enter Phone No"
@@ -56,10 +64,10 @@
 
         <EditText
             android:id="@+id/editEmail"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="25dp"
-            android:layout_marginBottom="40dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginBottom="55dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:hint="Enter Email ID"
@@ -70,9 +78,12 @@
 
         <Button
             android:id="@+id/submitDetail"
-            android:layout_width="wrap_content"
+            android:layout_width="150dp"
             android:layout_height="wrap_content"
             android:text="Submit"
+            android:textColor="@android:color/white"
+            android:background="@drawable/capsulebtn"
+            android:padding="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
