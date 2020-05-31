@@ -1,9 +1,11 @@
 package com.shubham.womensafety
 
 import android.app.Activity
+import android.app.Application
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
+import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
 import android.util.Log
@@ -16,17 +18,22 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
 import androidx.navigation.fragment.findNavController
+import androidx.room.Room
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
 import com.google.android.gms.location.*
 import com.google.firebase.auth.FirebaseAuth
 import com.shubham.womensafety.FirebaseAuth.LoginViewModel
+import com.shubham.womensafety.database.Guardian
+import com.shubham.womensafety.database.GuardianDatabase
 import com.shubham.womensafety.databinding.FragmentDashBoardBinding
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.*
+import kotlinx.coroutines.*
 
 class DashBoardFragment : Fragment() {
 
@@ -34,14 +41,15 @@ class DashBoardFragment : Fragment() {
 
     private lateinit var fusedLocationClient: FusedLocationProviderClient
     private lateinit var lastLocation: Location
-    private var Latitude:String=""
-    private var Longitude:String=""
+    private var Latitude: String = ""
+    private var Longitude: String = ""
+
+    private var viewModelJob = Job()
+    private val uiScope = CoroutineScope(Dispatchers.Main + viewModelJob)
 
     companion object {
         const val TAG = "DashBoardFragment"
         const val SIGN_IN_RESULT_CODE = 1001
-        private const val LOCATION_PERMISSION_REQUEST_CODE = 999
-
     }
 
     private val viewModel by viewModels<LoginViewModel>()
@@ -49,24 +57,40 @@ class DashBoardFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-        ): View? {
+    ): View? {
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(activity!!)
 
         // Inflate the layout for this fragment
-        binding = DataBindingUtil.inflate(inflater,
-            R.layout.fragment_dash_board,container,false)
+        binding = DataBindingUtil.inflate(
+            inflater,
+            R.layout.fragment_dash_board, container, false
+        )
 
-        binding.guardianButton.setOnClickListener { view:View->
-            view.findNavController().navigate(DashBoardFragmentDirections.actionDashBoardFragmentToGuardianInfo())
+        getLocation()
+
+        binding.guardianButton.setOnClickListener { view: View ->
+            view.findNavController()
+                .navigate(DashBoardFragmentDirections.actionDashBoardFragmentToGuardianInfo())
         }
 
-        binding.locButton.setOnClickListener { view:View->
+        binding.locButton.setOnClickListener { view: View ->
             view.findNavController().navigate(R.id.action_dashBoardFragment_to_mapsActivity)
         }
 
         binding.emerButton.setOnClickListener {
             getLocation()
+            if(Longitude.isNullOrBlank() || Longitude.isNullOrEmpty()){
+                Toast.makeText(activity!!,"Click on Location button and try again",Toast.LENGTH_LONG).show()
+            }
+            else {
+                uiScope.launch {
+                    withContext(Dispatchers.IO) {
+                        emergencyFun()
+                    }
+                }
+            }
+
         }
 
         return binding.root
@@ -75,20 +99,6 @@ class DashBoardFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeAuthenticationState()
-    }
-
-    private fun getLocation(){
-        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
-            if(location!=null){
-                lastLocation=location
-                Latitude = (location.latitude).toString()
-                Longitude = (location.longitude).toString()
-                Toast.makeText(activity!!,"${Latitude +"  "+ Longitude}",Toast.LENGTH_LONG).show()
-            }
-            else{
-                Toast.makeText(activity!!,"Try again: Location not fetched",Toast.LENGTH_SHORT).show()
-            }
-        }
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
@@ -110,7 +120,8 @@ class DashBoardFragment : Fragment() {
         viewModel.authenticationState.observe(viewLifecycleOwner, Observer { authenticationState ->
             when (authenticationState) {
                 LoginViewModel.AuthenticationState.AUTHENTICATED -> {
-                    binding.textView.text=("Welcome, "+FirebaseAuth.getInstance().currentUser?.displayName)
+                    binding.textView.text =
+                        ("Welcome, " + FirebaseAuth.getInstance().currentUser?.displayName)
                 }
                 else -> {
                     launchSignInFlow()
@@ -134,11 +145,47 @@ class DashBoardFragment : Fragment() {
         startActivityForResult(
             AuthUI.getInstance().createSignInIntentBuilder().setAvailableProviders(
                 providers
-            ) .setTheme(R.style.LoginTheme_NoActionBar)
+            ).setTheme(R.style.LoginTheme_NoActionBar)
                 .setLogo(R.drawable.women)
                 .build(), DashBoardFragment.SIGN_IN_RESULT_CODE
         )
     }
 
+    private fun getLocation() {
+        fusedLocationClient.lastLocation.addOnSuccessListener { location ->
+            if (location != null) {
+                lastLocation = location
+                Latitude = (location.latitude).toString()
+                Longitude = (location.longitude).toString()
+            }
+        }
+    }
+
+
+    private fun emergencyFun() {
+
+        val db =
+            Room.databaseBuilder(activity!!, GuardianDatabase::class.java, "GuardianDB").build()
+        val emailList: List<Guardian> = db.guardianDatabaseDao().getEmail()
+        var maillist: String = ""
+        emailList.forEach() {
+            maillist = emailList.joinToString(separator = ",") { it -> "${it.guardianEmail}" }
+        }
+
+        Log.d("Email", "$maillist")
+
+        val subject: String = "From Women Safety App"
+        val text: String = resources.getString(R.string.problem)
+        val text1 =
+            text.plus("https://www.google.com/maps/search/?api=1&query=$Latitude,$Longitude")
+
+        val shareIntent = Intent(Intent.ACTION_SEND)
+
+        shareIntent.setType("message/rfc822")
+            .putExtra(Intent.EXTRA_EMAIL, arrayOf(maillist))
+            .putExtra(Intent.EXTRA_SUBJECT, subject)
+            .putExtra(Intent.EXTRA_TEXT, text1)
+        startActivity(Intent.createChooser(shareIntent, "Send mail using.."))
+    }
 
 }

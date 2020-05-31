@@ -1,13 +1,9 @@
 package com.shubham.womensafety.guardiandetail
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import com.shubham.womensafety.database.Guardian
-import com.shubham.womensafety.database.GuardianDao
 import com.shubham.womensafety.database.GuardianDatabase
 import kotlinx.coroutines.*
 

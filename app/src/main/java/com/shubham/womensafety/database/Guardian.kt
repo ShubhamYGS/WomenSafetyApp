@@ -19,6 +19,6 @@ data class Guardian (
     @ColumnInfo(name="guardian_phoneno")
     var guardianPhoneNo:String = "",
 
-    @ColumnInfo(name="email_id")
+    @ColumnInfo(name="guardian_emailid")
     var guardianEmail:String = ""
 )

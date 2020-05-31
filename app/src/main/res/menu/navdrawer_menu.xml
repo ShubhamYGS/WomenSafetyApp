@@ -3,19 +3,19 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/rulesFragment"
+        android:id="@+id/mapsActivity"
         android:icon="@drawable/location"
-        android:title="Geo Location" />
+        android:title="@string/drawer_location" />
     <item
-        android:id="@+id/aboutFragment"
-        android:icon="@drawable/logout"
-        android:title="Guardian Details" />
-    <item android:title="Sub items">
+        android:id="@+id/guardianInfo"
+        android:icon="@drawable/info"
+        android:title="@string/drawer_guardian" />
+    <item android:title="Account Settings">
         <menu>
             <item
                 android:id="@+id/logout_user"
                 android:icon="@drawable/logout"
-                android:title="Logout" />
+                android:title="@string/drawer_logout" />
         </menu>
     </item>
 </menu>

@@ -35,7 +35,11 @@
         android:id="@+id/addGuardian"
         android:name="com.shubham.womensafety.guardiandetail.AddGuardian"
         android:label="fragment_add_guardian"
-        tools:layout="@layout/fragment_add_guardian" />
+        tools:layout="@layout/fragment_add_guardian" >
+        <action
+            android:id="@+id/action_addGuardian_to_guardianInfo"
+            app:destination="@id/guardianInfo" />
+    </fragment>
     <activity
         android:id="@+id/mapsActivity"
         android:name="com.shubham.womensafety.MapsActivity"

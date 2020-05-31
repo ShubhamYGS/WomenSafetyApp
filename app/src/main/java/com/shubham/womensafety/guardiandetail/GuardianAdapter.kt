@@ -21,9 +21,9 @@ class GuardianAdapter(val guardians: List<Guardian>)
 
     override fun onBindViewHolder(holder: GuardianAdapter.ViewHolder, position: Int) {
         holder.name.text = guardians[position].guardianName
-        holder.relation.text = guardians[position].guardianEmail
+        holder.relation.text = guardians[position].guardianRelation
         holder.phone.text = guardians[position].guardianPhoneNo
-        holder.email.text = guardians[position].guardianRelation
+        holder.email.text = guardians[position].guardianEmail
 
     }
 
@@ -40,7 +40,6 @@ class GuardianAdapter(val guardians: List<Guardian>)
         val relation = itemView.textRelation
         val phone = itemView.textPhone
         val email = itemView.textEmail
-
     }
 
 }

@@ -11,4 +11,11 @@
     <string name="terrain_map">Terrain Map</string>
 
     <string name="location_permission_not_granted">Location Permission not granted</string>
+
+    <string name="drawer_location">Check Location</string>
+    <string name="drawer_guardian">Guardian Details</string>
+    <string name="drawer_logout">Logout</string>
+
+    <string name="problem">Hello, I am in trouble. Click on the below link to see my location: \n</string>
+
 </resources>

@@ -17,4 +17,6 @@ interface GuardianDao{
     @Query("SELECT * from guardian_table ORDER BY guardianId DESC")
     fun getAllGuardians(): LiveData<List<Guardian>>
 
+    @Query("SELECT * from guardian_table")
+    fun getEmail(): List<Guardian>
 }

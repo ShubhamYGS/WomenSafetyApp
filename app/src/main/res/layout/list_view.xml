@@ -6,8 +6,9 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:contentPadding="10dp"
-    android:layout_margin="3dp"
+    app:cardCornerRadius="8dp"
     app:cardElevation="2dp"
+    app:cardUseCompatPadding="true"
     app:cardMaxElevation="3dp">
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -15,21 +16,22 @@
 
         <TextView
             android:id="@+id/textName"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Name"
+            android:textSize="20sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@id/textRelation"
-            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textRelation"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Relation"
-            app:layout_constraintBottom_toTopOf="@id/textPhone"
-            app:layout_constraintEnd_toEndOf="@id/textName"
+            android:textSize="18sp"
+            android:layout_marginTop="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textName" />
 
@@ -38,18 +40,22 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Phone"
+            android:textSize="18sp"
+            android:fontFamily="@font/oldstandard"
             app:layout_constraintBottom_toTopOf="@id/textEmail"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/textEmail" />
+            app:layout_constraintTop_toTopOf="parent"
+            android:textColor="@color/colorAccent"/>
 
         <TextView
             android:id="@+id/textEmail"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Email"
+            android:layout_marginTop="10dp"
+            android:textSize="18sp"
+            android:textColor="@color/colorPrimaryDark"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textPhone" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </com.google.android.material.card.MaterialCardView>
