@@ -38,7 +38,9 @@
         tools:layout="@layout/fragment_add_guardian" >
         <action
             android:id="@+id/action_addGuardian_to_guardianInfo"
-            app:destination="@id/guardianInfo" />
+            app:destination="@id/guardianInfo"
+            app:popUpTo="@+id/dashBoardFragment"
+            app:popUpToInclusive="false" />
     </fragment>
     <activity
         android:id="@+id/mapsActivity"

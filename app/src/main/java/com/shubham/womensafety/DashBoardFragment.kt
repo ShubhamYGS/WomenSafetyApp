@@ -1,5 +1,6 @@
 package com.shubham.womensafety
 
+import android.Manifest
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
@@ -8,6 +9,7 @@ import android.location.Location
 import android.net.Uri
 import android.os.Bundle
 import android.os.Looper
+import android.telephony.SmsManager
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -16,6 +18,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.LiveData
@@ -31,6 +34,7 @@ import com.shubham.womensafety.FirebaseAuth.LoginViewModel
 import com.shubham.womensafety.database.Guardian
 import com.shubham.womensafety.database.GuardianDatabase
 import com.shubham.womensafety.databinding.FragmentDashBoardBinding
+import com.shubham.womensafety.utils.PermissionUtils
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.nav_header.*
 import kotlinx.coroutines.*
@@ -50,6 +54,7 @@ class DashBoardFragment : Fragment() {
     companion object {
         const val TAG = "DashBoardFragment"
         const val SIGN_IN_RESULT_CODE = 1001
+        private const val PERMISSION_SEND_SMS = 2
     }
 
     private val viewModel by viewModels<LoginViewModel>()
@@ -80,17 +85,24 @@ class DashBoardFragment : Fragment() {
 
         binding.emerButton.setOnClickListener {
             getLocation()
-            if(Longitude.isNullOrBlank() || Longitude.isNullOrEmpty()){
-                Toast.makeText(activity!!,"Click on Location button and try again",Toast.LENGTH_LONG).show()
-            }
-            else {
-                uiScope.launch {
-                    withContext(Dispatchers.IO) {
-                        emergencyFun()
+            if (Longitude.isNullOrBlank() || Longitude.isNullOrEmpty()) {
+                Toast.makeText(
+                    activity!!,
+                    "Click on Location button and try again",
+                    Toast.LENGTH_LONG
+                ).show()
+            } else {
+                if (ActivityCompat.checkSelfPermission(activity!!, Manifest.permission.SEND_SMS)
+                    != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(activity!!, arrayOf(Manifest.permission.SEND_SMS), PERMISSION_SEND_SMS)
+                } else {
+                    uiScope.launch {
+                        withContext(Dispatchers.IO) {
+                            emergencyFun()
+                        }
                     }
                 }
             }
-
         }
 
         return binding.root
@@ -151,6 +163,16 @@ class DashBoardFragment : Fragment() {
         )
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        if(requestCode == PERMISSION_SEND_SMS){
+            uiScope.launch {
+                withContext(Dispatchers.IO) {
+                    emergencyFun()
+                }
+            }
+        }
+    }
+
     private fun getLocation() {
         fusedLocationClient.lastLocation.addOnSuccessListener { location ->
             if (location != null) {
@@ -163,21 +185,23 @@ class DashBoardFragment : Fragment() {
 
 
     private fun emergencyFun() {
-
         val db =
             Room.databaseBuilder(activity!!, GuardianDatabase::class.java, "GuardianDB").build()
         val emailList: List<Guardian> = db.guardianDatabaseDao().getEmail()
+
         var maillist: String = ""
-        emailList.forEach() {
-            maillist = emailList.joinToString(separator = ",") { it -> "${it.guardianEmail}" }
-        }
-
-        Log.d("Email", "$maillist")
-
         val subject: String = "From Women Safety App"
         val text: String = resources.getString(R.string.problem)
         val text1 =
             text.plus("https://www.google.com/maps/search/?api=1&query=$Latitude,$Longitude")
+
+        emailList.forEach() {
+            maillist = emailList.joinToString(separator = ",") { it -> "${it.guardianEmail}" }
+        }
+        emailList.forEach() {
+            val smsManager = SmsManager.getDefault() as SmsManager
+            smsManager.sendTextMessage("${it.guardianPhoneNo}", null, "$text1", null, null)
+        }
 
         val shareIntent = Intent(Intent.ACTION_SEND)
 
