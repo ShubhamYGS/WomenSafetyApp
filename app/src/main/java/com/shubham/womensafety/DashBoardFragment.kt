@@ -2,41 +2,32 @@ package com.shubham.womensafety
 
 import android.Manifest
 import android.app.Activity
-import android.app.Application
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.location.Location
-import android.net.Uri
 import android.os.Bundle
-import android.os.Looper
 import android.telephony.SmsManager
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import android.widget.Toast
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.app.ActivityCompat
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import androidx.room.Room
 import com.firebase.ui.auth.AuthUI
 import com.firebase.ui.auth.IdpResponse
-import com.google.android.gms.location.*
+import com.google.android.gms.location.FusedLocationProviderClient
+import com.google.android.gms.location.LocationServices
 import com.google.firebase.auth.FirebaseAuth
 import com.shubham.womensafety.FirebaseAuth.LoginViewModel
 import com.shubham.womensafety.database.Guardian
 import com.shubham.womensafety.database.GuardianDatabase
 import com.shubham.womensafety.databinding.FragmentDashBoardBinding
-import com.shubham.womensafety.utils.PermissionUtils
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.nav_header.*
 import kotlinx.coroutines.*
 
 class DashBoardFragment : Fragment() {

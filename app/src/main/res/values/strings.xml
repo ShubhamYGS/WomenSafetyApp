@@ -17,5 +17,17 @@
     <string name="drawer_logout">Logout</string>
 
     <string name="problem">Hello, I am in trouble. Click on the below link to see my location: \n</string>
+    <string name="enter_email_id">Enter Email ID</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="enter_relation">Enter Relation</string>
+    <string name="enter_phone_no">Enter Phone No</string>
+    <string name="submit">Submit</string>
+    <string name="todo">TODO</string>
+    <string name="guardian_details">Guardian Details</string>
+    <string name="location">Location</string>
+    <string name="check_location">Check Location</string>
+    <string name="emergency">Emergency</string>
+    <string name="add_guardian">Add Guardian</string>
+    <string name="women_safety_app">Women Safety App</string>
 
 </resources>

@@ -25,7 +25,7 @@
             android:layout_marginTop="10dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/capsulebtn"
-            android:text="Add Guardian"
+            android:text="@string/add_guardian"
             android:textColor="@android:color/white"
             android:textSize="15sp"
             android:textStyle="bold"

@@ -8,144 +8,144 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="#DDECEB">
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/frameLayout"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="7dp"
-            android:textColor="@color/colorAccent"
-            android:textSize="22sp"
-            android:textStyle="normal|italic"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.047"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.031" />
-
-        <LinearLayout
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/frameLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:gravity="center"
-            android:orientation="vertical"
-            android:padding="25dp"
-            app:layout_constraintTop_toBottomOf="@+id/textView">
+            android:layout_height="wrap_content">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/guardianButton"
-                android:layout_width="match_parent"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardMaxElevation="3dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginTop="0dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="7dp"
+                android:textColor="@color/colorAccent"
+                android:textSize="22sp"
+                android:textStyle="normal|italic"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.465"
+                app:layout_constraintHorizontal_bias="0.047"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.091">
+                app:layout_constraintVertical_bias="0.031" />
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <ImageView
-                        android:id="@+id/imageView"
-                        android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:foregroundGravity="center"
-                        android:src="@drawable/guardian" />
-
-                    <View
-                        android:id="@+id/vie"
-                        android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_below="@+id/imageView"
-                        android:background="#000" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/vie"
-                        android:background="@drawable/buttonback"
-                        android:gravity="center"
-                        android:text="Guardian Details"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
-
-
-            <androidx.cardview.widget.CardView
-                android:id="@+id/locButton"
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:cardCornerRadius="8dp"
-                app:cardElevation="2dp"
-                app:cardMaxElevation="3dp"
-                app:cardUseCompatPadding="true"
-                android:layout_marginTop="15dp"
-                android:text="Location"
-                app:layout_constraintBottom_toTopOf="@+id/emerButton"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/guardianButton" >
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:padding="25dp"
+                app:layout_constraintTop_toBottomOf="@+id/textView">
 
-                <RelativeLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/guardianButton"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent">
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="0dp"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.465"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/textView"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.091">
 
-                    <ImageView
-                        android:id="@+id/imageView1"
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="150dp"
-                        android:foregroundGravity="center"
-                        android:src="@drawable/checkloc" />
+                        android:layout_height="match_parent">
 
-                    <View
-                        android:id="@+id/vie1"
+                        <ImageView
+                            android:id="@+id/imageView"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:foregroundGravity="center"
+                            android:src="@drawable/guardian" />
+
+                        <View
+                            android:id="@+id/vie"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/imageView"
+                            android:background="#000" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/vie"
+                            android:background="@drawable/buttonback"
+                            android:gravity="center"
+                            android:text="@string/guardian_details"
+                            android:textColor="@android:color/black"
+                            android:textSize="25sp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/locButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="15dp"
+                    android:text="@string/location"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="2dp"
+                    app:cardMaxElevation="3dp"
+                    app:cardUseCompatPadding="true"
+                    app:layout_constraintBottom_toTopOf="@+id/emerButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/guardianButton">
+
+                    <RelativeLayout
                         android:layout_width="match_parent"
-                        android:layout_height="2dp"
-                        android:layout_below="@+id/imageView1"
-                        android:background="#000" />
+                        android:layout_height="match_parent">
 
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="40dp"
-                        android:layout_below="@+id/vie1"
-                        android:background="@drawable/buttonback"
-                        android:gravity="center"
-                        android:text="Check Location"
-                        android:textColor="@android:color/black"
-                        android:textSize="25sp" />
-                </RelativeLayout>
-            </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/imageView1"
+                            android:layout_width="match_parent"
+                            android:layout_height="150dp"
+                            android:foregroundGravity="center"
+                            android:src="@drawable/checkloc" />
 
-            <Button
-                android:id="@+id/emerButton"
-                android:layout_width="135dp"
-                android:layout_height="135dp"
-                android:layout_marginTop="35dp"
-                android:background="@drawable/oval_background"
-                android:text="Emergency"
-                android:textColor="@android:color/white"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/locButton" />
-        </LinearLayout>
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                        <View
+                            android:id="@+id/vie1"
+                            android:layout_width="match_parent"
+                            android:layout_height="2dp"
+                            android:layout_below="@+id/imageView1"
+                            android:background="#000" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="40dp"
+                            android:layout_below="@+id/vie1"
+                            android:background="@drawable/buttonback"
+                            android:gravity="center"
+                            android:text="@string/check_location"
+                            android:textColor="@android:color/black"
+                            android:textSize="25sp" />
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <Button
+                    android:id="@+id/emerButton"
+                    android:layout_width="135dp"
+                    android:layout_height="135dp"
+                    android:layout_marginTop="35dp"
+                    android:background="@drawable/oval_background"
+                    android:text="@string/emergency"
+                    android:textColor="@android:color/white"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/locButton" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </layout>

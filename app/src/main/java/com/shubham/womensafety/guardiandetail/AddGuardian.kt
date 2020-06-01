@@ -2,21 +2,17 @@ package com.shubham.womensafety.guardiandetail
 
 import android.os.Bundle
 import android.text.TextUtils
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.DataBindingUtil
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProviders
 import androidx.navigation.fragment.findNavController
-import androidx.room.Room
 import com.shubham.womensafety.R
 import com.shubham.womensafety.database.Guardian
-import com.shubham.womensafety.database.GuardianDatabase
 import com.shubham.womensafety.databinding.FragmentAddGuardianBinding
-import kotlinx.coroutines.*
 
 class AddGuardian : Fragment() {
 
