@@ -3,13 +3,13 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/mapsActivity"
-        android:icon="@drawable/location"
-        android:title="@string/drawer_location" />
-    <item
         android:id="@+id/guardianInfo"
         android:icon="@drawable/info"
         android:title="@string/drawer_guardian" />
+    <item
+        android:id="@+id/mapsActivity"
+        android:icon="@drawable/location"
+        android:title="@string/drawer_location" />
     <item android:title="Account Settings">
         <menu>
             <item

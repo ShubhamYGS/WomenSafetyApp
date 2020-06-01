@@ -38,6 +38,9 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_maps)
+
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+
         // Obtain the SupportMapFragment and get notified when the map is ready to be used.
         val mapFragment = supportFragmentManager
             .findFragmentById(R.id.map) as SupportMapFragment
@@ -140,6 +143,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback, GoogleMap.OnMarker
                 override fun onLocationResult(locationResult: LocationResult) {
                     super.onLocationResult(locationResult)
                     for (location in locationResult.locations) {
+                        map.clear()
                         map.isMyLocationEnabled = true
                         val currentLatLng = LatLng(location.latitude, location.longitude)
                         placeMarkerOnMap(currentLatLng)

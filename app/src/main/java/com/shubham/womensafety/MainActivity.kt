@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.firebase.ui.auth.AuthUI
@@ -27,12 +28,17 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.myNavHostFragment)
         NavigationUI.setupActionBarWithNavController(this,navController,drawerLayout)
 
-        binding.navView.menu!!.findItem(R.id.logout_user).setOnMenuItemClickListener { menuItem:MenuItem ->
-            if(drawerLayout.isDrawerOpen(GravityCompat.START)){
-                drawerLayout.closeDrawer(GravityCompat.START)
+        NavigationUI.setupWithNavController(binding.navView, navController)
+
+        binding.navView.setNavigationItemSelectedListener {
+            when (it.itemId) {
+                R.id.logout_user ->
+                    AuthUI.getInstance().signOut(this)
+//                R.id.guardianInfo->
+//                    Navigation.createNavigateOnClickListener(R.id.action_dashBoardFragment_to_guardianInfo)
+//                R.id.mapsActivity->
+//                    findNavController(R.id.action_dashBoardFragment_to_mapsActivity)
             }
-            AuthUI.getInstance().signOut(this)
-            Toast.makeText(this,"Logged Out Successfully",Toast.LENGTH_SHORT).show()
             true
         }
     }
