@@ -1,13 +1,10 @@
 package com.shubham.womensafety
 
 import android.os.Bundle
-import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.GravityCompat
 import androidx.databinding.DataBindingUtil
 import androidx.drawerlayout.widget.DrawerLayout
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import com.firebase.ui.auth.AuthUI
@@ -34,11 +31,12 @@ class MainActivity : AppCompatActivity() {
             when (it.itemId) {
                 R.id.logout_user ->
                     AuthUI.getInstance().signOut(this)
-//                R.id.guardianInfo->
-//                    Navigation.createNavigateOnClickListener(R.id.action_dashBoardFragment_to_guardianInfo)
-//                R.id.mapsActivity->
-//                    findNavController(R.id.action_dashBoardFragment_to_mapsActivity)
+                R.id.guardianInfo ->
+                    navController.navigate(R.id.action_dashBoardFragment_to_guardianInfo)
+                R.id.mapsActivity ->
+                    navController.navigate(R.id.action_dashBoardFragment_to_mapsActivity)
             }
+            drawerLayout.closeDrawer(GravityCompat.START)
             true
         }
     }
