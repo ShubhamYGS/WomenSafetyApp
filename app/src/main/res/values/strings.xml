@@ -30,4 +30,5 @@
     <string name="add_guardian">Add Guardian</string>
     <string name="women_safety_app">Women Safety App</string>
 
+    <string name="cleared_message">All your data is gone forever.</string>
 </resources>

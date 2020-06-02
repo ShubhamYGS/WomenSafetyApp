@@ -4,32 +4,27 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.shubham.womensafety.guardiandetail.GuardianInfo">
 
-    <data>
-        <variable
-            name="guardianInfoViewModel"
-            type="com.shubham.womensafety.guardiandetail.GuardianInfoViewModel" />
-    </data>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/frameLayout3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
 
-
         <Button
             android:id="@+id/addGuardian"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"
             android:background="@drawable/capsulebtn"
             android:text="@string/add_guardian"
             android:textColor="@android:color/white"
             android:textSize="15sp"
             android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/guardian_list"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
@@ -38,7 +33,7 @@
             android:layout_width="409dp"
             android:layout_height="671dp"
             android:layout_marginStart="1dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginEnd="1dp"
             android:layout_marginBottom="1dp"
             app:layout_constraintBottom_toBottomOf="parent"
